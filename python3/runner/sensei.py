@@ -40,7 +40,7 @@ class Sensei(MockableTestResult):
         if self.passesCount():
             MockableTestResult.addSuccess(self, test)
             self.stream.writeln( \
-                "  {0}{1}{2} has expanded your awareness.{3}{4}" \
+                "  {0}{1}{2} {3}{4}" \
                 .format(Fore.GREEN, Style.BRIGHT, test._testMethodName, \
                 Fore.RESET, Style.NORMAL))
             self.pass_count += 1
@@ -105,8 +105,7 @@ class Sensei(MockableTestResult):
         problem = self.firstFailure()
         if not problem: return
         test, err = problem
-        self.stream.writeln("  {0}{1}{2} has damaged your "
-          "karma.".format(Fore.RED, Style.BRIGHT, test._testMethodName))
+        self.stream.writeln("  {0}{1}{2} ".format(Fore.RED, Style.BRIGHT, test._testMethodName))
 
         self.stream.writeln("\n{0}{1}You have not yet reached enlightenment ..." \
             .format(Fore.RESET, Style.NORMAL))

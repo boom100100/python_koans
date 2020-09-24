@@ -32,9 +32,32 @@ from runner.koan import *
 #
 # Your goal is to write the score method.
 
+def one_five_processor(target, one_or_five, high, low):
+    while one_or_five > 0:
+        if one_or_five >= 3:
+            target += high
+            one_or_five -= 3
+        else:
+            target += one_or_five * low
+            one_or_five = 0
+    return target
+
 def score(dice):
-    # You need to write this method
-    pass
+    target = 0
+    dictionary = {k: dice.count(k) for k in dice}
+
+    for k in dictionary:
+        if k == 1:
+            target = one_five_processor(target, dictionary[k], 1000, 100)
+        elif k == 5:
+            target = one_five_processor(target, dictionary[k], 500, 50)
+        elif dictionary[k] > 2:
+            target += k * 100
+
+    return target
+
+
+
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
